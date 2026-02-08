@@ -3,10 +3,10 @@ import { Menu, X } from "lucide-react"
 import { useState } from "react";
 
 const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    // { href: "#about", label: "About" },
+    // { href: "#experience", label: "Experience" },
+    // { href: "#projects", label: "Projects" },
+    // { href: "#contact", label: "Contact" },
 ]
 
 export const Navbar = () => {
@@ -33,13 +33,13 @@ export const Navbar = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <div className="hidden md:block">
+                {/* <div className="hidden md:block">
                     <Button size="sm">Contact Me</Button>
-                </div>
+                </div> */}
 
                 {/* Mobile Menu Button */}
                 <button 
-                    className="md:hidden p-2 text-foreground" 
+                    className="md:hidden p-2 text-foreground cursor-pointer" 
                     onClick={() => setIsMobileMenuOpen((prev) => !prev)}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -59,7 +59,7 @@ export const Navbar = () => {
                                 {link.label}
                             </a>
                         ))}
-                        <Button>Contact Me</Button>    
+                        {/* <Button>Contact Me</Button>     */}
                     </div>
                 </div>
             )}
