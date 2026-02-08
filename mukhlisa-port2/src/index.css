@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Core */
+    --color-background: #F4EFEA; /* sandstone */
+    --color-foreground: #1C1A17; /* ink */
+
+    /* Surfaces */
+    --color-card: #FBF8F4;      /* slightly lifted sandstone */
+    --color-surface: #FFFFFF;   /* true white for screenshots/code blocks */
+
+    /* Brand / accents */
+    --color-primary: #9B4A2F;              /* clay/henna */
+    --color-primary-foreground: #F4EFEA;   /* text on clay */
+
+    --color-secondary: #B7C7B0;            /* light sage (chosen) */
+    --color-secondary-foreground: #1C1A17; /* text on sage */
+
+    /* UI */
+    --color-border: #DED6CE;    /* warm light gray border */
+    --radius: 16px;
+
+    /* Interaction highlight */
+    --color-highlight: #48CAE4; /* cyan - links/hover only */
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  .font-serif {
+    font-family: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+}
+
+@layer components {
+  /* .card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  } */
+
+  .glass {
+    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  }
+
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    backdrop-filter: blur(24);
+    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in{
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translate(20px);
+      filter: blur(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes slow-drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(20px, -30px);
+    }
+    50% {
+      transform: translate(-15px, -20px);
+    }
+    75% {
+      transform: translate(30px, 10px);
+    }
+  }
+  .animation-fade-in {
+    animation: fade-in 0.8s ease-out both;
+    
+  }
+}
