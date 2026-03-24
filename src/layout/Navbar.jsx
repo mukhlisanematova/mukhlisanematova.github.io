@@ -24,6 +24,7 @@ export const Navbar = () => {
                     </div>
 
                     {/* Navigation items in the middle */}
+                    {/* #to fix: nav buttons aren't real links — use <a href="#id"> anchors instead of <button> so screen readers and keyboard users can navigate */}
                     <div className="flex items-center justify-center gap-1">
                         {navItems.map((item) => (
                             <button
@@ -101,9 +102,12 @@ export const Navbar = () => {
                         Mukhlisabonu Nematova
                     </div>
 
+                    {/* #to fix: hamburger button missing aria-label and aria-expanded — screen readers can't tell users what it does or whether the menu is open */}
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
                         className="p-2"
+                        aria-label={menuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={menuOpen}
                     >
                         <svg
                             className="w-6 h-6"
