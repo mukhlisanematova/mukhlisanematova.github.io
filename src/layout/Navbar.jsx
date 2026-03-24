@@ -1,68 +1,189 @@
-import { Button } from "@/components/Button"
-import { Menu, X } from "lucide-react"
 import { useState } from "react";
 
-const navLinks = [
-    // { href: "#about", label: "About" },
-    // { href: "#experience", label: "Experience" },
-    // { href: "#projects", label: "Projects" },
-    // { href: "#contact", label: "Contact" },
-]
+const navItems = [
+    { id: 'about', label: 'About' },
+    { id: 'news', label: 'News' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'cv', label: 'CV' },
+];
 
 export const Navbar = () => {
-    const[isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('about');
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
-        <header className="fixed top-0 left-0 right-0 bg-transparent py-5 z-50">
-            <nav className="container mx-auto px-6 flex items-center justify-between">
-                <a href="#" className="text-xl font-bold tracking-tight hover:text-primary">
-                    Mukhlisabonu Nematova <span className="text-primary">.</span>
-                </a>
-                {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-1">
-                    <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-                        {navLinks.map((link, index) => (
-                            <a 
-                                key={index} 
-                                href={link.href} 
-                                className="px-4 py-2 text-sm text-muted-foreground hover:bg-surface"
+        <header className="fixed top-0 left-0 right-0 bg-transparent z-50">
+            <div className="container mx-auto px-6 py-3">
+                {/* Desktop Navigation */}
+                <div className="hidden lg:grid grid-cols-3 items-center gap-8">
+                    {/* Name on the left */}
+                    <div className="text-xl font-bold tracking-tight" style={{
+                        color: 'var(--color-foreground)',
+                    }}>
+                        Mukhlisabonu Nematova
+                    </div>
+
+                    {/* Navigation items in the middle */}
+                    <div className="flex items-center justify-center gap-1">
+                        {navItems.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => setActiveTab(item.id)}
+                                className="px-4 py-2 transition-all duration-300 relative"
+                                style={{
+                                    color: activeTab === item.id ? 'var(--color-primary)' : 'var(--color-foreground)',
+                                    letterSpacing: '0.02em',
+                                }}
+                                onMouseEnter={(e) => {
+                                    if (activeTab !== item.id) {
+                                        e.currentTarget.style.color = 'var(--color-secondary-foreground)';
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    if (activeTab !== item.id) {
+                                        e.currentTarget.style.color = 'var(--color-foreground)';
+                                    }
+                                }}
                             >
-                                {link.label}
-                            </a>
+                                {item.label}
+                                {activeTab === item.id && (
+                                    <div
+                                        className="absolute left-0 right-0 h-0.5 rounded-full"
+                                        style={{
+                                            backgroundColor: 'var(--color-primary)',
+                                            bottom: '6px'
+                                        }}
+                                    />
+                                )}
+                            </button>
                         ))}
                     </div>
-                </div>
-                
-                {/* CTA Button */}
-                {/* <div className="hidden md:block">
-                    <Button size="sm">Contact Me</Button>
-                </div> */}
 
-                {/* Mobile Menu Button */}
-                <button 
-                    className="md:hidden p-2 text-foreground cursor-pointer" 
-                    onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </nav>
-
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <div className="md:hidden glass-strong animate-fade-in">
-                    <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-                        {navLinks.map((link, index) => (
-                            <a 
-                                key={index} 
-                                href={link.href} 
-                                className="text-lg text-muted-foreground hover:text-foreground py-2"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
-                        {/* <Button>Contact Me</Button>     */}
+                    {/* Log in button on the right */}
+                    <div className="flex justify-end">
+                        <button
+                            onClick={() => setActiveTab('login')}
+                            className="px-4 py-2 transition-all duration-300 relative"
+                            style={{
+                                color: activeTab === 'login' ? 'var(--color-primary)' : 'var(--color-foreground)',
+                                letterSpacing: '0.02em',
+                            }}
+                            onMouseEnter={(e) => {
+                                if (activeTab !== 'login') {
+                                    e.currentTarget.style.color = 'var(--color-secondary-foreground)';
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                if (activeTab !== 'login') {
+                                    e.currentTarget.style.color = 'var(--color-foreground)';
+                                }
+                            }}
+                        >
+                            Log in
+                            {activeTab === 'login' && (
+                                <div
+                                    className="absolute left-0 right-0 h-0.5 rounded-full"
+                                    style={{
+                                        backgroundColor: 'var(--color-primary)',
+                                        bottom: '6px'
+                                    }}
+                                />
+                            )}
+                        </button>
                     </div>
                 </div>
-            )}
+
+                {/* Mobile Navigation */}
+                <div className="lg:hidden flex items-center justify-between">
+                    <div className="text-xl font-bold tracking-tight" style={{
+                        color: 'var(--color-foreground)',
+                    }}>
+                        Mukhlisabonu Nematova
+                    </div>
+
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="p-2"
+                    >
+                        <svg
+                            className="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            style={{ color: 'var(--color-foreground)' }}
+                        >
+                            {menuOpen ? (
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            ) : (
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            )}
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {menuOpen && (
+                    <div className="lg:hidden mt-4 flex flex-col gap-1 pb-2">
+                        {navItems.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => {
+                                    setActiveTab(item.id);
+                                    setMenuOpen(false);
+                                }}
+                                className="px-4 py-3 transition-all duration-300 text-left relative"
+                                style={{
+                                    color: activeTab === item.id ? 'var(--color-primary)' : 'var(--color-foreground)',
+                                    letterSpacing: '0.02em'
+                                }}
+                            >
+                                {item.label}
+                                {activeTab === item.id && (
+                                    <div
+                                        className="absolute left-4 right-4 h-0.5 rounded-full"
+                                        style={{
+                                            backgroundColor: 'var(--color-primary)',
+                                            bottom: '10px'
+                                        }}
+                                    />
+                                )}
+                            </button>
+                        ))}
+                        <button
+                            onClick={() => {
+                                setActiveTab('login');
+                                setMenuOpen(false);
+                            }}
+                            className="px-4 py-3 transition-all duration-300 text-left relative"
+                            style={{
+                                color: activeTab === 'login' ? 'var(--color-primary)' : 'var(--color-foreground)',
+                                letterSpacing: '0.02em'
+                            }}
+                        >
+                            Log in
+                            {activeTab === 'login' && (
+                                <div
+                                    className="absolute left-4 right-4 h-0.5 rounded-full"
+                                    style={{
+                                        backgroundColor: 'var(--color-primary)',
+                                        bottom: '10px'
+                                    }}
+                                />
+                            )}
+                        </button>
+                    </div>
+                )}
+            </div>
         </header>
-    )
+    );
 }
