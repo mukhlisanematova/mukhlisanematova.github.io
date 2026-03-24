@@ -39,14 +39,14 @@ export const Hero = () => {
                         </div>
 
                         {/* headline */}
-                        {/* <div className="space-y-4">
-                            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight animate-fade-in delay-300">
+                        <div className="space-y-4">
+                            {/* <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight animate-fade-in delay-300">
                                 Research-to-Product<span className="color-primary glow-text"> builder </span> 
                                 <br />
                                 with experience 
                                 <br /> 
                                 shipping <span className="font-serif italic font-normal color-primary">reliable</span> systems for <span className="font-serif italic font-normal color-primary">real</span> people.
-                            </h1>
+                            </h1> */}
 
                             <p className="text-lg text-muted-foreground mt-4 animate-fade-in animation-delay-500">
                             Hi, I'm Mukhlisabonu Nematova, a recent CS grad who loves exploring new technologies and building things that make a difference. 
@@ -54,7 +54,7 @@ export const Hero = () => {
                             <br />
                             When I'm not coding, you can find me doing henna, making new recipes drinks baking cooking, working on small business's.
                             </p>
-                        </div> */}
+                        </div>
 
                         {/*social links */}
                         <div className="flex items-center gap-4 animate-fade-in animation-delay-400">

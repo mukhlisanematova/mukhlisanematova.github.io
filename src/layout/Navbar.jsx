@@ -133,7 +133,7 @@ export const Navbar = () => {
 
                 {/* Mobile Menu */}
                 {menuOpen && (
-                    <div className="lg:hidden mt-4 flex flex-col gap-1 pb-2">
+                    <div className="lg:hidden mt-4 flex flex-col gap-1 pb-2 rounded-xl backdrop-blur-md border overflow-hidden" style={{ backgroundColor: 'rgba(244, 239, 234, 0.92)', borderColor: 'rgba(222, 214, 206, 0.4)', animation: 'dropdown 0.2s ease-out both' }}>
                         {navItems.map((item) => (
                             <button
                                 key={item.id}
