@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #F4EFEA;
+  --color-foreground: #1C1A17;
+  --color-card: #FBF8F4;
+  --color-surface: #FFFFFF;
+  --color-primary: #9B4A2F;
+  --color-primary-foreground: #F4EFEA;
+  --color-secondary: #B7C7B0;
+  --color-secondary-foreground: #1C1A17;
+  --color-muted-foreground: #6B6560;
+  --color-border: #DED6CE;
+  --color-highlight: #48CAE4;
+  --radius: 16px;
+}
+
 @layer base {
   :root {
     /* Core */
@@ -11,6 +26,7 @@
     --color-surface: #FFFFFF;   /* true white for screenshots/code blocks */
 
     /* Brand / accents */
+    /* #to fix: verify #9B4A2F on #F4EFEA passes WCAG AA contrast ratio (4.5:1 for normal text) — use a contrast checker */
     --color-primary: #9B4A2F;              /* clay/henna */
     --color-primary-foreground: #F4EFEA;   /* text on clay */
 
@@ -18,6 +34,7 @@
     --color-secondary-foreground: #1C1A17; /* text on sage */
 
     /* UI */
+    --color-muted-foreground: #6B6560; /* warm muted gray */
     --color-border: #DED6CE;    /* warm light gray border */
     --radius: 16px;
 
@@ -71,6 +88,8 @@
 }
 
 @layer utilities {
+  /* #to fix: no prefers-reduced-motion support — add @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } } */
+  /* #to fix: no :focus-visible styles — add visible focus outlines so keyboard users can track where they are */
   @keyframes dropdown {
     from {
       opacity: 0;
@@ -111,7 +130,7 @@
       transform: translate(30px, 10px);
     }
   }
-  .animation-fade-in {
+  .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
   }
 
@@ -129,5 +148,16 @@
   }
   .animation-delay-500 {
     animation-delay: 500ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .color-primary {
+    color: var(--color-primary);
+  }
+
+  .color-foreground {
+    color: var(--color-foreground);
   }
 }

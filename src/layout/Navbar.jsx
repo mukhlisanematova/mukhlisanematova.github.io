@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
     { id: 'about', label: 'About' },
@@ -10,9 +10,16 @@ const navItems = [
 export const Navbar = () => {
     const [activeTab, setActiveTab] = useState('about');
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     return (
-        <header className="fixed top-0 left-0 right-0 bg-transparent z-50">
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-strong border-b border-border/40' : 'bg-transparent'}`}>
             <div className="container mx-auto px-6 py-3">
                 {/* Desktop Navigation */}
                 <div className="hidden lg:grid grid-cols-3 items-center gap-8">
