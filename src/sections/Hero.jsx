@@ -2,7 +2,7 @@ import { Github, Linkedin } from "lucide-react";
 
 export const Hero = () => {
     return (
-    <section className="relative min-h-screen flex items-center overflow-hidden"
+    <section className="relative flex items-center overflow-hidden"
         aria-label="Introduction">
         {/* Background */}
             <div className="absolute inset-0">
@@ -93,5 +93,5 @@ export const Hero = () => {
                 </div>
             </div>
         </section>
-            );
+    );
 }
